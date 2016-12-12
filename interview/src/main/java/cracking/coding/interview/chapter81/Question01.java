@@ -1,6 +1,7 @@
 package cracking.coding.interview.chapter81;
 
 public class Question01 {
+	//无重复的字符时，返回true
 	public static boolean check(String str){
 		if (str.length()>256) return false;
 		
@@ -9,6 +10,21 @@ public class Question01 {
 			int asc=str.charAt(i);
 			if (flags[asc]) return false;
 			else flags[asc]=true;
+		}
+		return true;
+	}
+	
+	//unicode版
+	public static boolean checkUnicode(String unicodeStr){
+		if (unicodeStr.length()>65535) return false;
+		
+		boolean[] check = new boolean[65535];
+		String[] hex = unicodeStr.split("\\\\u");
+		for (int i=0; i<hex.length; i++){
+			if (hex[i].trim().length()==0) continue;
+			int pos = Integer.parseInt(hex[i], 16);
+			if(check[pos]) return false;
+			check[pos] = true;
 		}
 		return true;
 	}
@@ -45,7 +61,9 @@ public class Question01 {
 		
 		System.out.println(isUniqueChars(s));
 		
-		String unicode = "后知后觉ABCD";
+		String unicode = "后知先觉ABcd";
 		System.out.println(string2unicode(unicode));
+		
+		System.out.println(checkUnicode(string2unicode(unicode)));
 	}
 }
