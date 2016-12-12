@@ -25,8 +25,27 @@ public class Question01 {
 		}
 		return true;
 	}
+	
+	public static String string2unicode(String str){
+		StringBuffer unicode = new StringBuffer();
+		for (int i=0; i<str.length(); i++) {
+			char c = str.charAt(i);
+			unicode.append("\\u"+Integer.toHexString(c));
+		}
+		return unicode.toString();
+	}
+	
+//	public static boolean checkUnicode(String str){
+//		
+//	}
+	
 	public static void main(String[] args) {
-		String s ="aBCdefghIJLMn";
+		String s ="aBCdefghIJLMa";
 		System.out.println(check(s));
+		
+		System.out.println(isUniqueChars(s));
+		
+		String unicode = "后知后觉ABCD";
+		System.out.println(string2unicode(unicode));
 	}
 }
