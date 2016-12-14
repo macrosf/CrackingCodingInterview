@@ -45,26 +45,42 @@ public class Question05 {
 		return size;
 	}
 	
-//	public static String alternativeCompress(String str){
-//		int len = str.length();
-//		if(len<=countCompress(str)) return str;
-//		
-//		char[] array = new char[countCompress(str)];
-//		char last = str.charAt(0);
-//		int count = 1;
-//		for (int i=1; i<len; i++){
-//			if (last == str.charAt(i)){
-//				count++;
-//			}
-//			else{
-//				copy2array(array, index, count);
-//			}
-//		}
-//	}
+	public static String alternativeCompress(String str){
+		int len = str.length();
+		if(len<=countCompress(str)) return str;
+		
+		char[] array = new char[countCompress(str)];
+		char last = str.charAt(0);
+		int count = 1;
+		int index = 0;
+		for (int i=1; i<len; i++){
+			if (last == str.charAt(i)){
+				count++;
+			}
+			else{
+				index = copy2array(array, index, last, count);
+				last = str.charAt(i);
+				count=1;
+			}
+		}
+		
+		copy2array(array, index, last, count);
+		return new String(array);
+	}
 	
+	private static int copy2array(char[] array, int index, char last, int count) {
+		array[index] = last;
+		String s = String.valueOf(count);
+		for (int i=1; i<=s.length(); i++) {
+			array[index+i] = s.charAt(i-1);
+		}
+		return index+s.length()+1;
+	}
+
 	public static void main(String args[]){
 		String str = "aaabbcccdd";
 		System.out.println(str+ "-->" + compressBetter(str));
+		System.out.println(str + "-->" + alternativeCompress(str));
 		
 		str = "abcedfg";
 		System.out.println(str+ "-->" + compressBetter(str));
