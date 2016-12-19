@@ -1,4 +1,4 @@
-package chapter82;
+package cracking.coding.interview.chapter82;
 
 public class Question02 {
 

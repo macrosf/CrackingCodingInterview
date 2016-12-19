@@ -1,4 +1,4 @@
-package chapter82;
+package cracking.coding.interview.chapter82;
 
 import java.util.Hashtable;
 

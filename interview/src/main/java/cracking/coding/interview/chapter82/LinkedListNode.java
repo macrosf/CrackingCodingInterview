@@ -1,4 +1,4 @@
-package chapter82;
+package cracking.coding.interview.chapter82;
 
 public class LinkedListNode {
 
@@ -10,12 +10,13 @@ public class LinkedListNode {
 		next = null;
 	}
 
-	public void append(int i) {
+	public LinkedListNode append(int i) {
 		LinkedListNode cur = this;
 		while(cur.next != null) {
 			cur = cur.next;
 		}
 		cur.next = new LinkedListNode(i);
+		return this;
 	}
 
 	public void print(){
@@ -27,6 +28,12 @@ public class LinkedListNode {
 			System.out.print(", " + cur.data);
 		}
 		System.out.println("]");
+	}
+
+	public LinkedListNode insertBefore(int i) {
+		LinkedListNode n = new LinkedListNode(i);
+		n.next = this;
+		return n;
 	}
 	
 }
