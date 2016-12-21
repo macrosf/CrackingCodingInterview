@@ -19,7 +19,7 @@ public class Question05 {
 		//正序链表测试
 		LinkedListNode t10 = new LinkedListNode(7)
 				.append(1).append(6);
-		System.out.println(chain2int_v2(t10));
+		//System.out.println(chain2int_v2(t10));
 		LinkedListNode t11 = new LinkedListNode(5)
 				.append(9).append(2);
 		chainAdd2(t10, t11).print();//716+592
@@ -87,11 +87,9 @@ public class Question05 {
 	private static int chain2int_v2(LinkedListNode top) {
 		if (top == null) return 0;
 		int sum = top.data;
-		int power = 1;
 		top = top.next;
 		while (top != null){
-			power *= 10;
-			sum += (sum*power+top.data);
+			sum = sum*10+top.data;
 			top = top.next;
 		}
 		return sum;
