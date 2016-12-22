@@ -3,7 +3,7 @@ package cracking.coding.interview.chapter82;
 public class Question05 {
 	
 	public static void main(String args[]){
-		//倒序链表测试
+		System.out.println("---------------倒序链表测试---------------");
 		LinkedListNode t1 = new LinkedListNode(7)
 				.append(1).append(6);
 		LinkedListNode t2 = new LinkedListNode(5)
@@ -15,8 +15,7 @@ public class Question05 {
 		LinkedListNode t3 = new LinkedListNode(7).append(1);
 		chainAdd(t3, t2).print();//17+295
 		
-		System.out.println("------------------------------");
-		//正序链表测试
+		System.out.println("---------------正序链表测试---------------");
 		LinkedListNode t10 = new LinkedListNode(7)
 				.append(1).append(6);
 		//System.out.println(chain2int_v2(t10));
@@ -27,6 +26,27 @@ public class Question05 {
 		chainAdd2(null, t11).print();
 		LinkedListNode t13 = new LinkedListNode(7).append(1);
 		chainAdd2(t13, t11).print();//71+592
+		
+		System.out.println("---------------倒序链表递归实现测试---------------");
+		recursiveAdd(t10, t11, 0).print();//617+295
+		recursiveAdd(null, t11, 0).print();//295
+		recursiveAdd(t13, t11, 0).print();//71+592
+	}
+	
+	public static LinkedListNode recursiveAdd(LinkedListNode n1, LinkedListNode n2, int carry){
+		if (n1 == null && n2 == null && carry==0) return null;
+		int t1=0; int t2=0;
+		if (n1 != null) t1=n1.data;
+		if (n2 != null) t2=n2.data;
+		LinkedListNode cur = new LinkedListNode((t1+t2+carry)%10);
+		
+		carry = (t1+t2+carry)/10;
+		n1 = (n1==null)?null:n1.next;
+		n2 = (n2==null)?null:n2.next;
+		LinkedListNode next = recursiveAdd(n1, n2, carry);
+		if (next!=null)	cur.append(next);
+		
+		return cur;
 	}
 	
 	//数字按倒序存入链表相加

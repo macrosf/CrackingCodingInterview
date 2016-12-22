@@ -11,13 +11,25 @@ public class LinkedListNode {
 	}
 
 	public LinkedListNode append(int i) {
+		LinkedListNode tail = getTail();
+		tail.next = new LinkedListNode(i);
+		return this;
+	}
+
+	public LinkedListNode append(LinkedListNode node){
+		LinkedListNode tail = getTail();
+		tail.next = node;
+		return this;
+	}
+
+	private LinkedListNode getTail() {
 		LinkedListNode cur = this;
 		while(cur.next != null) {
 			cur = cur.next;
 		}
-		cur.next = new LinkedListNode(i);
-		return this;
+		return cur;
 	}
+	
 
 	public void print(){
 		LinkedListNode cur = this;
